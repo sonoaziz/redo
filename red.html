@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>URL Redirection</title>
-    <script type="text/javascript">
-        window.onload = function() {
-            // Original URL
-            var originalUrl = window.location.href;
-
-            // Extract the phone number part and remove spaces and hyphens
-            var phoneNumber = originalUrl.split('+')[1].replace(/[\s-]/g, '');
-
-            // Create the new URL
-            var newUrl = 'https://t.me/+' + phoneNumber;
-
-            // Redirect to the new URL
-            window.location.href = newUrl;
-        };
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Link Formatter</title>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <div id="output"></div>
+
+    <script>
+        function format_telegram_link(link) {
+            // Your function implementation here (same as you provided)
+            let phone_number = link.split("/").pop();
+            let formatted_number = phone_number.replace(/\s/g, "").replace(/-/g, "");
+            let new_link = `https://t.me/${formatted_number}`;
+            return new_link;
+        }
+
+        // Example usage
+        let old_link = "https://t.me/+998 98-302-29-52";
+        let new_link = format_telegram_link(old_link);
+        document.getElementById('output').innerHTML = `<a href="${new_link}" target="_blank">${new_link}</a>`;
+    </script>
 </body>
 </html>
